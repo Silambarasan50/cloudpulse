@@ -15,14 +15,14 @@ namespace backend.Migrations
                 name: "MonitoredEndpoints",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Url = table.Column<string>(type: "TEXT", nullable: false),
-                    CheckIntervalSeconds = table.Column<int>(type: "INTEGER", nullable: false, defaultValue: 30),
-                    ExpectedStatusCode = table.Column<int>(type: "INTEGER", nullable: false, defaultValue: 200),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: true),
-                    CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CheckIntervalSeconds = table.Column<int>(type: "int", nullable: false, defaultValue: 30),
+                    ExpectedStatusCode = table.Column<int>(type: "int", nullable: false, defaultValue: 200),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    CreatedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,13 +33,13 @@ namespace backend.Migrations
                 name: "HealthCheckLogs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    EndpointId = table.Column<int>(type: "INTEGER", nullable: false),
-                    StatusCode = table.Column<int>(type: "INTEGER", nullable: false),
-                    ResponseTimeMs = table.Column<double>(type: "REAL", nullable: false),
-                    IsSuccess = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CheckedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EndpointId = table.Column<int>(type: "int", nullable: false),
+                    StatusCode = table.Column<int>(type: "int", nullable: false),
+                    ResponseTimeMs = table.Column<double>(type: "float", nullable: false),
+                    IsSuccess = table.Column<bool>(type: "bit", nullable: false),
+                    CheckedAtUtc = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
